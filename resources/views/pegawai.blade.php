@@ -5,6 +5,14 @@
     <title>Laravel</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- MULAI STYLE CSS -->
+    <style>
+        div.absen{
+            margin-top: 30px;
+        }
+        div.export{
+            margin-top: 30px;
+        }
+    </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -18,7 +26,7 @@
 
 <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal ">FORM TAMBAH NIK </h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal ">FORM ABSEN </h5>
         
     </div>
 
@@ -29,9 +37,30 @@
             
             <div class="card-body">
                 <!-- MULAI TOMBOL TAMBAH -->
-                <a href="javascript:void(0)" class="btn btn-info" id="tombol-tambah">Tambah NIK</a>
-                <a href="/export" class="btn btn-success" id="tombol-export">Export</a>
-                <br><br>
+                <form id="form-tambah-edit" name="form-tambah-edit" class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <input type="hidden" name="id" id="id">
+                                <div class="form-group">
+                                    <label for="nik" class="col-sm-12 control-label"><b>Masukkan NIK</b></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="" id="nik" name="nik"
+                                            value="" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absen">
+                                <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
+                                    value="create">Absen
+                                </button>
+                                
+                            </div>
+                            <div class="export col-sm-offset-10 col-sm-2">
+                                <a href="/export" class="btn btn-success" id="tombol-export">Export</a>
+                            </div>
+                        </div>
+                    </form>
+                <br>
                 <!-- AKHIR TOMBOL -->
                 <!-- MULAI TABLE -->
                 <table class="table table-striped table-bordered table-sm" id="table_pegawai">
@@ -96,7 +125,7 @@
 
     <!-- MULAI MODAL KONFIRMASI DELETE-->
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="konfirmasi-modal" data-backdrop="false">
+    <!-- <div class="modal fade" tabindex="-1" role="dialog" id="konfirmasi-modal" data-backdrop="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -116,7 +145,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- AKHIR MODAL -->
 
@@ -162,7 +191,7 @@
             $('#button-simpan').val("create-post"); 
             $('#id').val(''); 
             $('#form-tambah-edit').trigger("reset"); 
-            $('#modal-judul').html("Tambah NIK Baru"); 
+            $('#modal-judul').html("Masukkan NIK "); 
             $('#tambah-edit-modal').modal('show'); 
         });
 
@@ -214,7 +243,7 @@
                         success: function (data) { 
                             $('#form-tambah-edit').trigger("reset"); 
                             $('#tambah-edit-modal').modal('hide'); 
-                            $('#tombol-simpan').html('Simpan'); 
+                            $('#tombol-simpan').html('Absen'); 
                             var oTable = $('#table_pegawai').dataTable(); 
                             oTable.fnDraw(false); 
                             iziToast.success({ 
