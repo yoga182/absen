@@ -42,7 +42,7 @@
                             <div class="col-sm-5">
                                 <input type="hidden" name="id" id="id">
                                 <div class="form-group">
-                                    <label for="nik" class="col-sm-12 control-label"><b>Masukkan NIK</b></label>
+                                    <label for="nik" class="col-sm-12 control-label"><b>Add NIK</b></label>
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" placeholder="" id="nik" name="nik"
                                             value="" required>
@@ -69,7 +69,7 @@
                         
                             <th>#</th>
                             <th>NIK</th>
-                            <th>Tanggal Ditambahkan</th>
+                            <th>Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -84,7 +84,7 @@
     <!-- AKHIR CONTAINER -->
 
     <!-- MULAI MODAL FORM TAMBAH/EDIT-->
-    <div class="modal fade" id="tambah-edit-modal" aria-hidden="true">
+    <div class="modal fade" id="export-modal" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
@@ -92,24 +92,32 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-tambah-edit" name="form-tambah-edit" class="form-horizontal">
+                    <form id="form-export" name="form-export" class="form-horizontal">
                         <div class="row">
                             <div class="col-sm-12">
 
                                 <input type="hidden" name="id" id="id">
 
                                 <div class="form-group">
-                                    <label for="nik" class="col-sm-12 control-label">NIK</label>
+                                    <label for="created_at" class="col-sm-12 control-label">Date From</label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="nik" name="nik"
+                                        <input type="date" class="form-control" id="created_at" name="created_at"
                                             value="" required>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="created_at" class="col-sm-12 control-label">Date To</label>
+                                    <div class="col-sm-12">
+                                        <input type="date" class="form-control" id="created_at" name="created_at"
+                                            value="" required>
+                                    </div>
+                                </div>
+                                
                             </div>
 
                             <div class="col-sm-offset-2 col-sm-12">
-                                <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
-                                    value="create">Simpan
+                                <button type="submit" class="btn btn-success btn-block" id="tombol-export"
+                                    value="create">Export
                                 </button>
                             </div>
                         </div>
@@ -193,6 +201,13 @@
             $('#form-tambah-edit').trigger("reset"); 
             $('#modal-judul').html("Masukkan NIK "); 
             $('#tambah-edit-modal').modal('show'); 
+        });
+        $('#tombol-export').click(function () {
+            $('#button-export').val("create-post"); 
+            $('#id').val(''); 
+            $('#form-export').trigger("reset"); 
+            $('#modal-judul').html("Select Date"); 
+            $('#export-modal').modal('show'); 
         });
 
         //MULAI DATATABLE
